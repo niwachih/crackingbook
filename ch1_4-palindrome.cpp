@@ -40,7 +40,7 @@ bool isPermutationofPalindrome(string phrase)
 	return checkMaxOneOdd(array_p);
 }
 int main() {
-	
+
 	string phrase;
 	cout << "Please enter your phrase..." << endl;
 	getline(cin,phrase);
@@ -49,6 +49,6 @@ int main() {
 		cout << "Phrase is Palindrome!" << endl;
 	else
 		cout << "Phrase is NOT Palindrome..." << endl;
-	
+
     return 0;
 }
