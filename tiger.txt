@@ -2,5 +2,5 @@
 1. learn how to send SQL query from SQL Explorer
 2. install Firebird DB
 3. received $800 from Mrs Hu
-4. fried mushroom is delicous
+4. fried mushroom is delicious
 -----------------------------------------------
