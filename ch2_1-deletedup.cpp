@@ -23,6 +23,7 @@ Mylist* destroylist(Mylist*);
 void appendtotail(Mylist*, int);
 void reverselist(Mylist*);
 void deleteitem(Mylist*, int);
+void printlist(Mylist*);
 
 int main() {
 	Mylist* list=createlist();
@@ -33,19 +34,19 @@ int main() {
 		appendtotail(list,2);
 		appendtotail(list,3);
 		appendtotail(list,4);
-		cout << "my original list: " << list->head->data << " "\
-		<< list->head->next->data << " "\
-		<< list->head->next->next->data << " "\
-		<< list->head->next->next->next->data << endl;
+		appendtotail(list,5);
+		appendtotail(list,6);
+		cout << "my original list: ";
+		printlist(list);
+		
 		reverselist(list);
-		cout << "list after reverse: " << list->head->data << " "\
-		<< list->head->next->data << " "\
-		<< list->head->next->next->data << " "\
-		<< list->head->next->next->next->data << endl;
+		cout << "list after reverse: ";
+		printlist(list);
+		
 		deleteitem(list,1);
 		deleteitem(list,3);
-		cout << "list after delete 1 and 3: " << list->head->data << " "\
-		<< list->head->next->data << " " << endl;		
+		cout << "list after delete 1 and 3: ";
+		printlist(list);
 		destroylist(list);
 	}
 	else
@@ -144,9 +145,21 @@ void deleteitem(Mylist* plist, int key)
 	free(temp);
 	plist->count--;
 }
+void printlist(Mylist* plist)
+{
+	Node_int* temp = plist->head;
+	if(!temp)
+		return;
+	while(temp)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << endl;
+}
 //H:\myperl>g++ -o test ch2_1-deletedup.cpp
 //H:\myperl>test.exe
 //list created successfully!!!
-//my original list: 1 2 3 4
-//list after reverse: 4 3 2 1
-//list after delete 1 and 3: 4 2
+//my original list: 1 2 3 4 5 6
+//list after reverse: 6 5 4 3 2 1
+//list after delete 1 and 3: 6 5 4 2
