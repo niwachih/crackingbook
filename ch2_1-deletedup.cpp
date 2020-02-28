@@ -22,6 +22,7 @@ Mylist* createlist();
 Mylist* destroylist(Mylist*);
 void appendtotail(Mylist*, int);
 void reverselist(Mylist*);
+void deleteitem(Mylist*, int);
 
 int main() {
 	Mylist* list=createlist();
@@ -40,7 +41,11 @@ int main() {
 		cout << "list after reverse: " << list->head->data << " "\
 		<< list->head->next->data << " "\
 		<< list->head->next->next->data << " "\
-		<< list->head->next->next->next->data << endl;		
+		<< list->head->next->next->next->data << endl;
+		deleteitem(list,1);
+		deleteitem(list,3);
+		cout << "list after delete 1 and 3: " << list->head->data << " "\
+		<< list->head->next->data << " " << endl;		
 		destroylist(list);
 	}
 	else
@@ -111,8 +116,37 @@ void reverselist(Mylist* plist)
 	}
 	plist->head = prevptr;
 }
+void deleteitem(Mylist* plist, int key)
+{
+	Node_int* temp = plist->head;
+	Node_int* prev = NULL;
+	
+	if(temp != NULL && temp->data == key)
+	{
+		plist->head = temp->next;
+		free(temp);
+		plist->count--;
+		return;
+	}
+	//key item is at list head
+	while(temp != NULL && temp->data != key)
+	{
+		prev = temp;
+		//store pointer to prev node
+		temp = temp->next;
+		//move one position forward
+	}
+	if(!temp)
+		return;
+	//key item NOT found in this list
+	prev->next = temp->next;
+	//prev node next point to the next of key item
+	free(temp);
+	plist->count--;
+}
 //H:\myperl>g++ -o test ch2_1-deletedup.cpp
 //H:\myperl>test.exe
 //list created successfully!!!
 //my original list: 1 2 3 4
 //list after reverse: 4 3 2 1
+//list after delete 1 and 3: 4 2
