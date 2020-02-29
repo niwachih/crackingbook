@@ -3,8 +3,8 @@ using namespace std;
 
 //CHIH: 1. implement a function to delete duplicate node
 //         from singly linked list 
-//      2. hint: go through whole list, add node to hash table
-//         if duplicate, delete it
+//      2. hint: runner go through whole list after current
+//         if find duplicate, delete it
 //      3. extend from basic list:
 //         create, append, reverse, destroy, ...
 typedef struct node {
@@ -24,6 +24,7 @@ void appendtotail(Mylist*, int);
 void reverselist(Mylist*);
 void deleteitem(Mylist*, int);
 void printlist(Mylist*);
+void deleteduplicate(Mylist*);
 
 int main() {
 	Mylist* list=createlist();
@@ -32,8 +33,11 @@ int main() {
 		cout << "list created successfully!!!" << endl;
 		appendtotail(list,1);
 		appendtotail(list,2);
+		appendtotail(list,2);
+		appendtotail(list,2);
 		appendtotail(list,3);
 		appendtotail(list,4);
+		appendtotail(list,5);
 		appendtotail(list,5);
 		appendtotail(list,6);
 		cout << "my original list: ";
@@ -47,6 +51,11 @@ int main() {
 		deleteitem(list,3);
 		cout << "list after delete 1 and 3: ";
 		printlist(list);
+		
+		deleteduplicate(list);
+		cout << "list after delete duplicate items: ";
+		printlist(list);		
+		
 		destroylist(list);
 	}
 	else
@@ -157,9 +166,33 @@ void printlist(Mylist* plist)
 	}
 	cout << endl;
 }
+void deleteduplicate(Mylist* plist)
+{
+	Node_int* curr = plist->head;
+
+	while(curr)
+	{
+		Node_int* runner = curr;
+		while(runner->next)
+		{
+			if(curr->data == runner->next->data)
+			{
+				Node_int* temp = runner->next;
+				runner->next = runner->next->next;
+				free(temp);
+				plist->count--;
+			}
+			else
+				runner = runner->next;
+		}
+		curr = curr->next;
+	}
+	//algorithm complexity is O(n^2)
+}
 //H:\myperl>g++ -o test ch2_1-deletedup.cpp
 //H:\myperl>test.exe
 //list created successfully!!!
-//my original list: 1 2 3 4 5 6
-//list after reverse: 6 5 4 3 2 1
-//list after delete 1 and 3: 6 5 4 2
+//my original list: 1 2 2 2 3 4 5 5 6
+//list after reverse: 6 5 5 4 3 2 2 2 1
+//list after delete 1 and 3: 6 5 5 4 2 2 2
+//list after delete duplicate items: 6 5 4 2
