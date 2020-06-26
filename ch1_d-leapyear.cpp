@@ -6,7 +6,7 @@ using namespace std;
 //         (can be divided by 4, but cannot be divided by 100)
 //         -2000 is leap year
 //         (can be divided by 400)
-//	   3. PHISON SSD firmware position interview problem
+//      3. PHISON SSD firmware position interview problem
 bool isLeapYear(int);
 
 int main() {
