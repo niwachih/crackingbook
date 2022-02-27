@@ -2,7 +2,6 @@
 //20220227
 int myAtoi(char * s){
     char *ptr = s;
-    char *ptr_walker = NULL;
     int ret = 0;
     int sign;
     int i;
@@ -26,8 +25,7 @@ int myAtoi(char * s){
         sign = 1;
     }
     while (*ptr == '0')
-        ptr++;        
-    ptr_walker = ptr;
+        ptr++;
     for (i = 0; ptr[i] != '\0'; i++) {
         if ((ptr[i] == ' ') || (ptr[i] == '.'))
             ptr[i] = '\0';
