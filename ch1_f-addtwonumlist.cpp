@@ -5,6 +5,13 @@
  *     struct ListNode *next;
  * };
  */
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+	int val;
+	struct ListNode *next;
+};
 
 int sizeoflist(struct ListNode* l) {
     int ret = 0;
@@ -32,7 +39,7 @@ struct ListNode* addTwo(struct ListNode* l1, struct ListNode* l2, int carry) {
     if (l2 != NULL)
         size_l2 = sizeoflist(l2);
     size_ret = (size_l1 > size_l2) ? size_l1 : size_l2;
-    ret = malloc(sizeof(struct ListNode)*(size_ret+1));
+    ret = (struct ListNode*)malloc(sizeof(struct ListNode)*(size_ret+1));
     if (l1 != NULL)
         value += l1->val;
     if (l2 != NULL)
@@ -54,4 +61,11 @@ struct ListNode* addTwo(struct ListNode* l1, struct ListNode* l2, int carry) {
 
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
     return addTwo(l1, l2, 0);
+}
+
+int main() {
+
+	cout << "add two numbers..." << endl;
+
+    return 0;
 }
