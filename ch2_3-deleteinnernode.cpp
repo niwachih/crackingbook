@@ -2,7 +2,7 @@
 using namespace std;
 
 //CHIH: 1. implement a function to delete inner node in a linked list, except head and tail node
-//      2. input is node to be deleted only (not key!!!)
+//      2. input is node to be deleted only (not using key!!!)
 //      3. extend from basic list:
 //         create, append, reverse, destroy, ...
 typedef struct node {
