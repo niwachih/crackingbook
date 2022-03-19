@@ -167,7 +167,6 @@ bool deletenode(Mylist* plist, Node_int* n)
 {
 	//delete inner node without head or list
 	Node_int* nextnode;
-	Node_int* nodetobefree;
 
 	if ((n == NULL) || (n->next == NULL)) {
 		return false;
