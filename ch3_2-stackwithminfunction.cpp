@@ -30,7 +30,7 @@ class StackwithMin: public stack<int> {
 
 void StackwithMin::push(int value)
 {
-	if (value < min())
+	if (value <= min())
 		s_min_vlaues.push(value);
 	
 	stack::push(value);
@@ -63,6 +63,11 @@ int main() {
 	mystack.push(3);
 	mystack.push(4);
 	mystack.push(0);
+	mystack.push(0);
+	mystack.push(0);
+	mystack.pop();
+	mystack.pop();
+	mystack.pop();
 	cout << "minimum value of stack is: " << mystack.min() << endl;
 
     return 0;
@@ -71,5 +76,5 @@ int main() {
 
 //D:\crackingbook>test.exe
 //stack created!
-//minimum value of stack is: 0
+//minimum value of stack is: 1
 //stack destroyed...
